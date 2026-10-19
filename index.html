@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set Latihan UASA Sejarah Tingkatan 2 - Bab 2</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif'],
+                        display: ['Fredoka', 'cursive', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            blue: '#2563eb',
+                            purple: '#7c3aed',
+                            amber: '#d97706',
+                            emerald: '#059669',
+                            rose: '#e11d48',
+                            bg: '#f8fafc'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #e0f2fe 0%, #f0fdf4 50%, #fef3c7 100%);
+            min-height: 100vh;
+        }
+        .card-friendly {
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(12px);
+            border: 4px solid #ffffff;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+        }
+        .btn-friendly {
+            transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .btn-friendly:hover:not(:disabled) {
+            transform: translateY(-3px) scale(1.01);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .btn-friendly:active:not(:disabled) {
+            transform: translateY(1px) scale(0.99);
+        }
+        .bubble-glow {
+            animation: bounceSlow 3s infinite ease-in-out;
+        }
+        @keyframes bounceSlow {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e2e8f0;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3b82f6;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen text-slate-800 antialiased selection:bg-amber-300">
+
+    <!-- Header Navbar -->
+    <header class="w-full bg-white/90 backdrop-blur-md border-b-4 border-blue-500 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="bg-gradient-to-tr from-amber-400 to-amber-300 text-slate-900 p-2.5 rounded-2xl shadow-md border-2 border-white bubble-glow">
+                    <i class="fa-solid fa-coins text-2xl text-amber-900"></i>
+                </div>
+                <div>
+                    <h1 class="font-display text-lg sm:text-2xl font-black text-blue-600 leading-none">
+                        LATIHAN UASA SEJARAH T2 🏛️
+                    </h1>
+                    <p class="text-xs sm:text-sm text-emerald-700 font-extrabold tracking-wide mt-1">Bab 2: Sistem Pemerintahan & Ekonomi</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-2">
+                <button id="fullscreenBtn" onclick="toggleFullScreen()" class="flex items-center gap-1.5 bg-purple-50 hover:bg-purple-100 text-purple-700 px-3 py-2 rounded-2xl text-xs sm:text-sm font-black transition-all border-2 border-purple-200">
+                    <i id="fullscreenIcon" class="fa-solid fa-expand text-purple-600"></i>
+                    <span id="fullscreenStatus" class="hidden sm:inline">Skrin Penuh</span>
+                </button>
+
+                <button id="bgmToggleBtn" onclick="toggleBGM()" class="flex items-center gap-1.5 bg-blue-50 hover:bg-blue-100 text-blue-700 px-3 py-2 rounded-2xl text-xs sm:text-sm font-black transition-all border-2 border-blue-200">
+                    <i id="bgmIcon" class="fa-solid fa-music text-amber-500"></i>
+                    <span id="bgmStatus" class="hidden sm:inline">Muzik: ON</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow flex items-center justify-center p-3 sm:p-6">
+        <div class="w-full max-w-3xl">
+
+            <!-- 1. START SCREEN -->
+            <section id="startScreen" class="card-friendly rounded-3xl p-6 sm:p-10 text-center relative overflow-hidden my-2 border-t-8 border-t-amber-400">
+                <div class="relative z-10">
+                    <span class="inline-block bg-amber-100 text-amber-800 border-2 border-amber-300 font-black text-xs uppercase tracking-wider px-4 py-1.5 rounded-full mb-3 shadow-sm bubble-glow">
+                        ⭐ Latihan Interaktif UASA Bab 2 ⭐
+                    </span>
+                    
+                    <h2 class="font-display text-2xl sm:text-4xl font-black text-slate-800 mb-2 leading-tight">
+                        Bab 2: Sistem Pemerintahan dan Kegiatan Ekonomi Masyarakat Kerajaan Alam Melayu[cite: 1]
+                    </h2>
+                    
+                    <p class="text-slate-600 font-extrabold text-sm sm:text-base mb-6 max-w-xl mx-auto leading-relaxed">
+                        Masa Cadangan: <span class="text-blue-600">40 Minit</span>[cite: 1] • Jumlah Soalan: <span class="text-amber-600">30 Soalan</span>[cite: 1] • Markah: <span class="text-emerald-600">30 Markah</span>[cite: 1]
+                    </p>
+
+                    <!-- Student Registration Form -->
+                    <div class="bg-blue-50/80 p-5 rounded-3xl max-w-md mx-auto mb-6 border-2 border-blue-200 text-left shadow-inner">
+                        <label class="block text-xs font-black text-blue-900 uppercase mb-1">Nama Anda / Murid <span class="text-rose-500">*</span></label>
+                        <div class="relative mb-3">
+                            <i class="fa-solid fa-user-check absolute left-3.5 top-3.5 text-blue-400 text-lg"></i>
+                            <input type="text" id="playerName" placeholder="Contoh: Danish Irfan" class="w-full bg-white border-2 border-blue-200 rounded-2xl py-3 pl-10 pr-3 text-sm font-bold text-slate-800 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all">
+                        </div>
+
+                        <label class="block text-xs font-black text-blue-900 uppercase mb-1">Kelas <span class="text-rose-500">*</span></label>
+                        <div class="relative mb-4">
+                            <i class="fa-solid fa-graduation-cap absolute left-3.5 top-3.5 text-blue-400 text-lg"></i>
+                            <input type="text" id="playerClass" placeholder="Contoh: 2 Bestari" class="w-full bg-white border-2 border-blue-200 rounded-2xl py-3 pl-10 pr-3 text-sm font-bold text-slate-800 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all">
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex flex-col sm:flex-row justify-center gap-3">
+                        <button onclick="startQuiz()" class="btn-friendly bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white font-display text-lg sm:text-xl font-black px-8 py-3.5 rounded-2xl shadow-lg border-2 border-emerald-300 inline-flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-play-circle text-2xl"></i>
+                            <span>MULA MENCUBA!</span>
+                        </button>
+                        <button onclick="toggleLeaderboardModal(true)" class="btn-friendly bg-gradient-to-r from-amber-400 to-yellow-500 hover:from-amber-500 hover:to-yellow-600 text-slate-900 font-display text-lg sm:text-xl font-black px-6 py-3.5 rounded-2xl shadow-lg border-2 border-amber-200 inline-flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-trophy text-slate-900"></i>
+                            <span>Papan Kedudukan</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. QUIZ SCREEN -->
+            <section id="quizScreen" class="hidden card-friendly rounded-3xl p-5 sm:p-8 relative my-2 border-t-8 border-t-blue-600">
+                <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-3 mb-4 pb-3 border-b-2 border-slate-100">
+                    <div class="flex items-center justify-between sm:justify-start gap-3">
+                        <span id="sectionBadge" class="bg-blue-100 text-blue-900 border-2 border-blue-200 text-xs font-black px-3.5 py-1.5 rounded-xl uppercase tracking-wider">
+                            Bahagian A: Sistem Pemerintahan[cite: 1]
+                        </span>
+                        <div class="flex items-center gap-2 text-amber-900 text-xs sm:text-sm font-black bg-amber-100 px-3.5 py-1.5 rounded-xl border-2 border-amber-200">
+                            <i class="fa-solid fa-star text-amber-500 text-base"></i>
+                            <span>MARKAH: <span id="liveScore" class="text-base text-blue-700">0</span> / 30</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-2 text-xs font-black text-slate-700 bg-slate-100 px-3.5 py-1.5 rounded-xl border border-slate-200">
+                        <i class="fa-solid fa-user text-emerald-600"></i>
+                        <span id="displayPlayerInfo">Pelajar: -</span>
+                    </div>
+                </div>
+
+                <!-- Booster Cards Panel -->
+                <div class="mb-4 bg-gradient-to-r from-purple-100 via-pink-100 to-amber-100 p-3 rounded-2xl border-2 border-purple-200 shadow-sm flex flex-wrap items-center justify-between gap-2">
+                    <span class="text-xs font-black text-purple-900 uppercase tracking-wider flex items-center gap-1.5">
+                        <i class="fa-solid fa-wand-magic-sparkles text-purple-600 text-sm"></i> Kuasa Booster:
+                    </span>
+                    <div class="flex items-center gap-2">
+                        <button id="btn5050" onclick="useBooster5050()" class="btn-friendly bg-indigo-600 hover:bg-indigo-700 disabled:opacity-40 disabled:cursor-not-allowed text-white text-xs font-black px-3 py-1.5 rounded-xl flex items-center gap-1.5 shadow border border-indigo-300">
+                            <i class="fa-solid fa-scissors text-amber-300"></i>
+                            <span>50:50 (<span id="count5050">2</span>)</span>
+                        </button>
+                        <button id="btnHint" onclick="useBoosterHint()" class="btn-friendly bg-amber-500 hover:bg-amber-600 disabled:opacity-40 disabled:cursor-not-allowed text-slate-900 text-xs font-black px-3 py-1.5 rounded-xl flex items-center gap-1.5 shadow border border-amber-300">
+                            <i class="fa-solid fa-lightbulb text-white"></i>
+                            <span>Petunjuk (<span id="countHint">2</span>)</span>
+                        </button>
+                        <button id="btnSkip" onclick="useBoosterSkip()" class="btn-friendly bg-teal-600 hover:bg-teal-700 disabled:opacity-40 disabled:cursor-not-allowed text-white text-xs font-black px-3 py-1.5 rounded-xl flex items-center gap-1.5 shadow border border-teal-300">
+                            <i class="fa-solid fa-forward text-emerald-200"></i>
+                            <span>Lompat (<span id="countSkip">1</span>)</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="flex justify-between text-xs text-slate-600 font-black mb-1">
+                    <span id="queueCountInfo">Baki Soalan: 30</span>
+                    <span id="progressPercentText" class="text-blue-600">0%</span>
+                </div>
+                <div class="w-full bg-slate-100 h-3.5 rounded-full mb-5 overflow-hidden p-0.5 border border-slate-200">
+                    <div id="progressBar" class="bg-gradient-to-r from-blue-500 via-emerald-400 to-amber-400 h-full rounded-full transition-all duration-300" style="width: 0%"></div>
+                </div>
+
+                <!-- Question Area -->
+                <div class="mb-5">
+                    <div class="flex items-start gap-3">
+                        <span id="questionNum" class="bg-blue-600 text-white font-display text-base font-black w-9 h-9 rounded-2xl flex items-center justify-center shrink-0 shadow-md">
+                            1
+                        </span>
+                        <h3 id="questionText" class="text-base sm:text-lg font-black text-slate-800 leading-snug pt-0.5 whitespace-pre-line">
+                            Memuatkan soalan...
+                        </h3>
+                    </div>
+                </div>
+
+                <!-- Options -->
+                <div id="optionsContainer" class="grid grid-cols-1 gap-2.5 mb-5"></div>
+
+                <!-- Hint Banner -->
+                <div id="hintBanner" class="hidden p-4 rounded-2xl mb-4 text-xs sm:text-sm font-extrabold bg-amber-100 text-amber-900 border-2 border-amber-300 flex items-start gap-2.5 shadow-sm">
+                    <i class="fa-solid fa-lightbulb text-amber-500 text-lg mt-0.5 shrink-0"></i>
+                    <div>
+                        <span class="font-black uppercase">Nota & Rujukan:</span> <span id="hintText" class="font-bold text-slate-800"></span>
+                    </div>
+                </div>
+
+                <!-- Feedback Banner -->
+                <div id="feedbackBanner" class="hidden p-4 rounded-2xl mb-4 text-sm font-bold flex items-start gap-3 border-2 shadow-sm">
+                    <i id="feedbackIcon" class="fa-solid text-2xl mt-0.5 shrink-0"></i>
+                    <div>
+                        <div id="feedbackTitle" class="font-black text-base"></div>
+                        <div id="feedbackText" class="mt-1 font-bold leading-relaxed"></div>
+                    </div>
+                </div>
+
+                <!-- Next Button -->
+                <div class="flex justify-end">
+                    <button id="nextBtn" onclick="nextQuestion()" class="hidden btn-friendly bg-blue-600 hover:bg-blue-700 text-white font-display font-black text-base px-8 py-3 rounded-2xl shadow-md inline-flex items-center gap-2">
+                        <span>Soalan Seterusnya</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- 3. RESULT SCREEN -->
+            <section id="resultScreen" class="hidden card-friendly rounded-3xl p-6 sm:p-10 text-center relative my-2 border-t-8 border-t-amber-400">
+                <div class="mb-3 inline-block bg-amber-100 p-4 rounded-full text-amber-600 border-2 border-amber-300 shadow-sm bubble-glow">
+                    <i class="fa-solid fa-trophy text-5xl"></i>
+                </div>
+
+                <h2 class="font-display text-3xl sm:text-4xl font-black text-slate-800 mb-1">
+                    Tahniah, <span id="resPlayerName" class="text-blue-600">Pelajar</span>! 🎉
+                </h2>
+                <p class="text-slate-600 font-extrabold text-sm sm:text-base mb-6">
+                    Anda telah menyelesaikan Set Latihan UASA Sejarah Tingkatan 2 Bab 2![cite: 1]
+                </p>
+
+                <!-- Score Grid -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 max-w-lg mx-auto mb-6">
+                    <div class="bg-emerald-50 p-4 rounded-2xl border-2 border-emerald-200">
+                        <div class="text-xs text-emerald-800 font-black uppercase">Jumlah Markah</div>
+                        <div id="finalScore" class="font-display text-3xl font-black text-emerald-600 mt-0.5">30 / 30</div>
+                    </div>
+                    <div class="bg-amber-50 p-4 rounded-2xl border-2 border-amber-200">
+                        <div class="text-xs text-amber-800 font-black uppercase">Ketepatan Percubaan 1</div>
+                        <div id="accuracyPercent" class="font-display text-3xl font-black text-amber-600 mt-0.5">100%</div>
+                    </div>
+                    <div class="bg-indigo-50 p-4 rounded-2xl border-2 border-indigo-200 col-span-2 sm:col-span-1">
+                        <div class="text-xs text-indigo-800 font-black uppercase">Ulang Percubaan</div>
+                        <div id="wrongAttemptsCount" class="font-display text-3xl font-black text-indigo-600 mt-0.5">0</div>
+                    </div>
+                </div>
+
+                <div id="performanceBadge" class="mb-4 inline-block px-5 py-2 rounded-2xl font-black text-sm uppercase tracking-wide border-2">
+                    Penguasaan Baik
+                </div>
+
+                <div id="motivationMsg" class="bg-slate-50 p-4 rounded-2xl border-2 border-slate-200 mb-6 max-w-lg mx-auto text-sm text-slate-700 font-extrabold leading-relaxed">
+                    -
+                </div>
+
+                <div class="flex flex-col sm:flex-row justify-center gap-3">
+                    <button onclick="restartQuiz()" class="btn-friendly bg-blue-600 hover:bg-blue-700 text-white font-display font-black text-lg px-8 py-3.5 rounded-2xl shadow-lg inline-flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-rotate-right"></i>
+                        <span>Cuba Semula Set Ini</span>
+                    </button>
+                    <button onclick="toggleLeaderboardModal(true)" class="btn-friendly bg-amber-400 hover:bg-amber-500 text-slate-900 font-display text-lg px-6 py-3.5 rounded-2xl shadow-lg border-2 border-amber-200 inline-flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-list-ol"></i>
+                        <span>Papan Kedudukan</span>
+                    </button>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Leaderboard Modal -->
+    <div id="leaderboardModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-3xl p-6 w-full max-w-lg shadow-2xl border-4 border-amber-400 relative max-h-[90vh] flex flex-col">
+            <button onclick="toggleLeaderboardModal(false)" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-xl w-9 h-9 flex items-center justify-center rounded-full bg-slate-100">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="text-center mb-4">
+                <div class="inline-block bg-amber-100 text-amber-600 p-3 rounded-full mb-1">
+                    <i class="fa-solid fa-award text-3xl"></i>
+                </div>
+                <h3 class="font-display text-2xl font-black text-slate-800">Papan Kedudukan UASA</h3>
+                <p class="text-xs font-extrabold text-slate-500">Rekod Markah Sejarah Tingkatan 2 Bab 2</p>
+            </div>
+
+            <div id="leaderboardList" class="flex-grow overflow-y-auto space-y-2 pr-1 my-2"></div>
+
+            <div class="mt-4 pt-3 border-t border-slate-100 flex justify-between items-center text-xs">
+                <button onclick="clearLeaderboard()" class="text-rose-500 hover:underline font-black">Padam Rekod</button>
+                <button onclick="toggleLeaderboardModal(false)" class="bg-slate-800 text-white font-black px-6 py-2 rounded-xl">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="w-full text-center py-4 text-xs font-black text-slate-500 bg-white/80 border-t border-slate-200">
+        Latihan UASA Sejarah Tingkatan 2 • Bab 2: Sistem Pemerintahan dan Kegiatan Ekonomi[cite: 1]
+    </footer>
+
+    <!-- JavaScript Quiz Logic -->
+    <script>
+        function setSafeText(id, text) {
+            const el = document.getElementById(id);
+            if (el) el.innerText = text;
+        }
+
+        function toggleFullScreen() {
+            const doc = document.documentElement;
+            const icon = document.getElementById('fullscreenIcon');
+            const statusText = document.getElementById('fullscreenStatus');
+
+            if (!document.fullscreenElement && !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
+                if (doc.requestFullscreen) {
+                    doc.requestFullscreen();
+                } else if (doc.msRequestFullscreen) {
+                    doc.msRequestFullscreen();
+                } else if (doc.mozRequestFullScreen) {
+                    doc.mozRequestFullScreen();
+                } else if (doc.webkitRequestFullscreen) {
+                    doc.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+                }
+                if (icon) icon.className = "fa-solid fa-compress text-purple-600";
+                if (statusText) statusText.innerText = "Keluar Skrin Penuh";
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                }
+                if (icon) icon.className = "fa-solid fa-expand text-purple-600";
+                if (statusText) statusText.innerText = "Skrin Penuh";
+            }
+        }
+
+        const rawQuestionsDatabase = [
+            // Bahagian A: Sistem Pemerintahan (1 - 10)
+            {
+                id: 1,
+                section: "Bahagian A: Sistem Pemerintahan",
+                question: "1. Kerajaan Funan, Champa, Srivijaya, Angkor, Majapahit, Kedah Tua dan Gangga Nagara mengamalkan sistem pemerintahan beraja.\nApakah ciri utama sistem pemerintahan tersebut?",
+                options: [
+                    "A. Pemerintahan berdasarkan pemilihan wakil rakyat",
+                    "B. Pemerintahan tanpa pembahagian kuasa",
+                    "C. Sistem beraja yang melibatkan pemerintahan pusat dan wilayah",
+                    "D. Pemerintahan yang hanya bergantung pada golongan pedagang"
+                ],
+                correctIndex: 2, // C
+                explanation: "Jawapan tepat: C. Sistem beraja yang melibatkan pemerintahan pusat dan wilayah.[cite: 1] Struktur pemerintahan beraja Alam Melayu secara umumnya berasaskan pembahagian kuasa di peringkat pusat dan wilayah.[cite: 1]"
+            },
+            {
+                id: 2,
+                section: "Bahagian A: Sistem Pemerintahan",
+                question: "2. Raja Funan menggunakan gelaran Kurung Bnam, Rajadhiraja dan Cakravatin.\nApakah maksud gelaran Cakravatin?",
+                options: [
+                    "A. Raja gunung",
+                    "B. Pemerintah alam sejagat",
+                    "C. Raja segala raja",
+                    "D. Ketua wilayah"
+                ],
+                correctIndex: 1, // B
+                explanation: "Jawapan tepat: B. Pemerintah alam sejagat.[cite: 1] Gelaran Cakravatin bermaksud pemerintah alam sejagat, manakala Kurung Bnam bermaksud raja gunung dan Rajadhiraja bermaksud raja segala raja.[cite: 1]"
+            },
+            {
+                id: 3,
+                section: "Bahagian A: Sistem Pemerintahan",
+                question: "3. Kerajaan Funan dibahagikan kepada tujuh wilayah yang ditadbir oleh putera-putera raja.\nApakah gelaran yang diberikan kepada ketua wilayah tersebut?",
+                options: [
+                    "A. Raja Kecil",
+                    "B. Yuvaraja",
+                    "C. Pratiyuvaraja",
+                    "D. Sapta Prabu"
+                ],
+                correctIndex: 0, // A
+                explanation: "Jawapan tepat: A. Raja Kecil.[cite: 1] Tujuh wilayah di bawah pemerintahan Funan diketuai oleh putera-putera raja yang digelar Raja Kecil.[cite: 1]"
+            },
+            {
+                id: 4,
+                section: "Bahagian A: Sistem Pemerintahan",
+                question: "4. Dalam sistem pemerintahan kerajaan Champa, raja dibantu oleh para pembesar.\nApakah tanggungjawab utama golongan pembesar tersebut?",
+                options: [
+                    "A. Menguruskan kegiatan pertanian sahaja",
+                    "B. Menjadi ketua agama di setiap kampung",
+                    "C. Mengendalikan sistem Kedatuan dan Pradatuan",
+                    "D. Mengutip cukai, menjaga keamanan dan mengukuhkan pertahanan"
+                ],
+                correctIndex: 3, // D
+                explanation: "Jawapan tepat: D. Mengutip cukai, menjaga keamanan dan mengukuhkan pertahanan.[cite: 1] Para pembesar Champa membantu raja menguruskan kutipan cukai, mentadbir wilayah, menjaga keamanan dan sistem pertahanan.[cite: 1]"
+            },
+            {
+                id: 5,
+                section: "Bahagian A: Sistem Pemerintahan",
+                question: "5. Dalam sistem pemerintahan kerajaan Srivijaya, raja dibantu oleh beberapa orang pembesar dan kerabat diraja.\nApakah peranan Yuvaraja?",
+                options: [
+                    "A. Ketua wilayah bukan berketurunan raja",
+                    "B. Putera Mahkota",
+                    "C. Raja Muda",
+                    "D. Pemungut cukai kerajaan"
+                ],
+                correctIndex: 1, // B
+                explanation: "Jawapan tepat: B. Putera Mahkota.[cite: 1] Yuvaraja merupakan Putera Mahkota, manakala Pratiyuvaraja ialah Raja Muda dan Rajakumara ialah anak raja yang lain.[cite: 1]"
+            },
+            {
+                id: 6,
+                section: "Bahagian A: Sistem Pemerintahan",
+                question: "6. Pentadbiran wilayah kerajaan Srivijaya dibahagikan kepada Kedatuan dan Pradatuan.\nPernyataan manakah yang tepat tentang pembahagian tersebut?",
+                options: [
+                    "A. Kedua-duanya ditadbir oleh Datu bukan berketurunan raja.",
+                    "B. Kedatuan ditadbir oleh Datu berketurunan raja, manakala Pradatuan ditadbir oleh Datu bukan berketurunan raja.",
+                    "C. Kedatuan ditadbir oleh pedagang, manakala Pradatuan ditadbir oleh golongan tentera.",
+                    "D. Kedua-duanya merupakan kawasan yang ditadbir secara langsung oleh pemerintah Champa."
+                ],
+                correctIndex: 1, // B
+                explanation: "Jawapan tepat: B. Kedatuan ditadbir oleh Datu berketurunan raja (Pasเคลื่อน/pembesar diraja), manakala Pradatuan ditadbir oleh Datu bukan berketurunan raja.[cite: 1]"
+            },
+            {
+                id: 7,
+                section: "Bahagian A: Sistem Pemerintahan",
+                question: "7. Raja-raja Angkor menggunakan gelaran Dewaraja. Kerajaan ini juga mempunyai sistem pentadbiran wilayah yang tersusun.\nApakah susunan pentadbiran wilayah kerajaan Angkor yang betul?",
+                options: [
+                    "A. Kampung → wilayah → daerah → daerah kecil",
+                    "B. Daerah kecil → kampung → daerah → wilayah",
+                    "C. Daerah → kampung → wilayah → daerah kecil",
+                    "D. Wilayah → daerah → daerah kecil → kampung"
+                ],
+                correctIndex: 3, // D
+                explanation: "Jawapan tepat: D. Wilayah → daerah → daerah kecil → kampung.[cite: 1] Hierarki pentadbiran wilayah Angkor disusun daripada Wilayah, Daerah, Daerah Kecil dan peringkat paling asas iaitu Kampung.[cite: 1]"
+            },
+            {
+                id: 8,
+                section: "Bahagian A: Sistem Pemerintahan",
+                question: "8. Kerajaan Majapahit mempunyai sebuah Majlis Penasihat Diraja yang dikenali sebagai Sapta Prabu.\nPernyataan manakah yang tepat tentang sistem pentadbiran Majapahit?",
+                options: [
+                    "A. Sapta Prabu terdiri daripada kerabat diraja dan berperanan sebagai Majlis Penasihat Diraja; Majapahit dibahagikan kepada 14 wilayah.",
+                    "B. Sapta Prabu merupakan kumpulan pedagang yang menguruskan semua pelabuhan.",
+                    "C. Sapta Prabu mentadbir tujuh wilayah kerajaan Funan.",
+                    "D. Majapahit hanya mempunyai satu wilayah tanpa pentadbiran daerah."
+                ],
+                correctIndex: 0, // A
+                explanation: "Jawapan tepat: A. Sapta Prabu terdiri daripada 7 orang kerabat diraja sebagai majlis penasihat raja, dan empire Majapahit terbahagi kepada 14 wilayah pentadbiran.[cite: 1]"
+            },
+            {
+                id: 9,
+                section: "Bahagian A: Sistem Pemerintahan",
+                question: "9. Kerajaan Kedah Tua mempunyai bentuk pentadbiran yang mudah dengan seorang ketua yang mengurus hal perdagangan dan keagamaan.\nApakah perubahan yang berlaku apabila Kedah Tua menjadi sebahagian daripada kerajaan Srivijaya?",
+                options: [
+                    "A. Kedah Tua menjadi kerajaan tanpa pemerintah.",
+                    "B. Kedah Tua mengamalkan sistem Sapta Prabu.",
+                    "C. Kedah Tua menjadi sebahagian daripada Pradatuan kerajaan Srivijaya.",
+                    "D. Kedah Tua dibahagikan kepada tujuh wilayah yang diketuai Raja Kecil."
+                ],
+                correctIndex: 2, // C
+                explanation: "Jawapan tepat: C. Kedah Tua menjadi sebahagian daripada Pradatuan kerajaan Srivijaya.[cite: 1] Apabila diserap ke bawah pengaruh Srivijaya, Kedah Tua diletakkan di bawah struktur Pradatuan.[cite: 1]"
+            },
+            {
+                id: 10,
+                section: "Bahagian A: Sistem Pemerintahan",
+                question: "10. Kajian menunjukkan bahawa kerajaan Gangga Nagara mengamalkan sistem pemerintahan beraja walaupun struktur pemerintahannya tidak jelas.\nApakah peranan rajanya berdasarkan buku teks?",
+                options: [
+                    "A. Menjadi ketua kepada semua kerajaan Alam Melayu",
+                    "B. Membangunkan perdagangan dan bertanggungjawab terhadap keselamatan",
+                    "C. Menguruskan pengajian agama Buddha sahaja",
+                    "D. Mengutip cukai bagi pihak kerajaan Srivijaya"
+                ],
+                correctIndex: 1, // B
+                explanation: "Jawapan tepat: B. Membangunkan perdagangan dan bertanggungjawab terhadap keselamatan.[cite: 1] Raja Gangga Nagara memegang peranan memakmurkan sektor perdagangan maritime dan menjaga benteng keselamatan negara.[cite: 1]"
+            },
+
+            // Bahagian B: Kegiatan Ekonomi — Pertanian dan Perdagangan (11 - 22)
+            {
+                id: 11,
+                section: "Bahagian B: Kegiatan Ekonomi",
+                question: "11. Pada peringkat awal, masyarakat kerajaan Alam Melayu menjalankan kegiatan pertanian untuk menyara diri. Apabila hasil pertanian melebihi keperluan, lebihan tersebut dipasarkan.\nApakah kesan kegiatan ini terhadap masyarakat?",
+                options: [
+                    "A. Semua penduduk meninggalkan kegiatan pertanian.",
+                    "B. Kegiatan perdagangan tidak lagi diperlukan.",
+                    "C. Kerajaan kehilangan sumber makanan.",
+                    "D. Lebihan hasil pertanian dapat dibekalkan kepada penduduk yang tidak terlibat dalam pertanian."
+                ],
+                correctIndex: 3, // D
+                explanation: "Jawapan tepat: D. Lebihan hasil pertanian dapat dibekalkan kepada penduduk yang tidak terlibat dalam pertanian[cite: 1] seperti pedagang, tukang, dan golongan pentadbir."
+            },
+            {
+                id: 12,
+                section: "Bahagian B: Kegiatan Ekonomi",
+                question: "12. Kerajaan Angkor membina baray untuk menyimpan air. Kawasan pertaniannya juga mendapat bekalan air daripada tasik besar seperti Tonle Sap.\nApakah kesan sistem pengairan tersebut?",
+                options: [
+                    "A. Penanaman padi dapat menghasilkan tuaian tiga hingga empat kali setahun di Angkor.",
+                    "B. Semua kawasan pertanian bertukar menjadi pelabuhan.",
+                    "C. Kegiatan perdagangan laut dapat dihentikan.",
+                    "D. Masyarakat tidak lagi memerlukan sumber air semula jadi."
+                ],
+                correctIndex: 0, // A
+                explanation: "Jawapan tepat: A. Penanaman padi dapat menghasilkan tuaian tiga hingga empat kali setahun di Angkor[cite: 1] disebabkan bekalan air yang stabil dari Baray dan Tonle Sap."
+            },
+            {
+                id: 13,
+                section: "Bahagian B: Kegiatan Ekonomi",
+                question: "13. Di setiap kampung dalam kerajaan Champa, terdapat seorang Ketua Air yang bertanggungjawab menyelenggarakan terusan dan daik.\nApakah kepentingan tugas tersebut?",
+                options: [
+                    "A. Memungut cukai daripada pedagang asing",
+                    "B. Menguruskan pertabalan raja",
+                    "C. Memastikan sistem pengairan dapat berfungsi untuk kegiatan pertanian",
+                    "D. Mengawal kemasukan kapal perang"
+                ],
+                correctIndex: 2, // C
+                explanation: "Jawapan tepat: C. Memastikan sistem pengairan dapat berfungsi untuk kegiatan pertanian.[cite: 1] Ketua Air memastikan selenggaraan terusan dan benteng air (daik) terjamin demi hasil sawah."
+            },
+            {
+                id: 14,
+                section: "Bahagian B: Kegiatan Ekonomi",
+                question: "14. Kerajaan Majapahit membangunkan kegiatan penanaman padi dengan memanfaatkan sumber air daripada sungai.\nPasangan sungai manakah yang membekalkan air untuk pengairan sawah padi di Jawa?",
+                options: [
+                    "A. Sungai Mekong dan Sungai Musi",
+                    "B. Sungai Bengawan Solo dan Sungai Brantas",
+                    "C. Sungai Musi dan Sungai Kapuas",
+                    "D. Sungai Brantas dan Sungai Mekong"
+                ],
+                correctIndex: 1, // B
+                explanation: "Jawapan tepat: B. Sungai Bengawan Solo dan Sungai Brantas.[cite: 1] Lembangan dua sungai utama ini menyuburkan dataran pertanian padi di Pulau Jawa."
+            },
+            {
+                id: 15,
+                section: "Bahagian B: Kegiatan Ekonomi",
+                question: "15. Kerajaan Srivijaya menjadikan padi sebagai tanaman utama. Penanaman padi sawah dijalankan di kawasan pedalaman Palembang.\nAntara berikut, yang manakah merupakan kawasan penanaman padi tersebut?",
+                options: [
+                    "A. Lembah Sungai Mekong dan Tonle Sap",
+                    "B. Lembah Sungai Brantas dan Bengawan Solo",
+                    "C. Lembah Mi Son dan Indrapura",
+                    "D. Tanah Tinggi Pasemah dan Hulu Musi"
+                ],
+                correctIndex: 3, // D
+                explanation: "Jawapan tepat: D. Tanah Tinggi Pasemah dan Hulu Musi.[cite: 1] Kawasan lembah pedalaman Sumatera ini merupakan pusat utama pengeluaran padi Srivijaya."
+            },
+            {
+                id: 16,
+                section: "Bahagian B: Kegiatan Ekonomi",
+                question: "16. Rempah-ratus merupakan antara hasil pertanian yang mendapat permintaan dalam perdagangan kerajaan Alam Melayu.\nPadanan manakah yang tepat?",
+                options: [
+                    "A. Bunga cengkih — Kepulauan Maluku; buah pala — Pulau Banda; lada hitam — Sumatera dan Jawa",
+                    "B. Bunga cengkih — Pulau Banda; buah pala — Jawa; lada hitam — Kepulauan Maluku",
+                    "C. Bunga cengkih — Sumatera; buah pala — Kepulauan Maluku; lada hitam — Pulau Banda",
+                    "D. Bunga cengkih — Jawa; buah pala — Sumatera; lada hitam — Kepulauan Maluku"
+                ],
+                correctIndex: 0, // A
+                explanation: "Jawapan tepat: A. Bunga cengkih ditanam di Kepulauan Maluku, Buah Pala di Pulau Banda, manakala Lada Hitam dikeluarkankan di Sumatera dan Jawa.[cite: 1]"
+            },
+            {
+                id: 17,
+                section: "Bahagian B: Kegiatan Ekonomi",
+                question: "17. Pelabuhan kerajaan Alam Melayu dilengkapi dengan bekalan air, tempat tinggal, tempat menyimpan barang dagangan dan kawasan berjual beli.\nApakah kepentingan kemudahan tersebut?",
+                options: [
+                    "A. Mengurangkan kedatangan pedagang asing",
+                    "B. Menggantikan semua kegiatan pertanian",
+                    "C. Memudahkan pedagang menjalankan urusan perdagangan dan persinggahan",
+                    "D. Menghalang perkembangan kegiatan perkapalan"
+                ],
+                correctIndex: 2, // C
+                explanation: "Jawapan tepat: C. Memudahkan pedagang menjalankan urusan perdagangan dan persinggahan.[cite: 1] Kemudahan pelabuhan yang lengkap menarik tumpuan armada pedagang asing."
+            },
+            {
+                id: 18,
+                section: "Bahagian B: Kegiatan Ekonomi",
+                question: "18. Antara berikut, yang manakah menunjukkan padanan pelabuhan dan barang dagangan yang tepat?",
+                options: [
+                    "A. Funan — Palembang — emas dan bijih timah",
+                    "B. Srivijaya — Oc Eo — beras dan perak",
+                    "C. Angkor — Tuban, Sidayu, Gresik dan Surabaya — gaharu dan buah pelaga",
+                    "D. Kedah Tua — Sungai Mas dan Pangkalan Bujang — rotan, damar, kayu cendana dan gading gajah"
+                ],
+                correctIndex: 3, // D
+                explanation: "Jawapan tepat: D. Kedah Tua (Sungai Mas & Pangkalan Bujang) membekalkan rotan, damar, kayu cendana dan gading gajah.[cite: 1]"
+            },
+            {
+                id: 19,
+                section: "Bahagian B: Kegiatan Ekonomi",
+                question: "19. Pedagang China membawa sutera, tembikar, pinggan, mangkuk, payung, gula dan gendang untuk didagangkan di Alam Melayu.\nApakah jenis barangan yang ingin diperoleh oleh pedagang China daripada Alam Melayu?",
+                options: [
+                    "A. Barangan yang hanya digunakan untuk peperangan",
+                    "B. Barangan yang mempunyai nilai perubatan",
+                    "C. Semua hasil pertanian dari kawasan pedalaman China",
+                    "D. Barangan yang hanya digunakan oleh golongan diraja"
+                ],
+                correctIndex: 1, // B
+                explanation: "Jawapan tepat: B. Barangan yang mempunyai nilai perubatan[cite: 1] (seperti gaharu, sarang burung, kapur barus, dan rempah-ratus)."
+            },
+            {
+                id: 20,
+                section: "Bahagian B: Kegiatan Ekonomi",
+                question: "20. Pedagang India membawa kain kapas, tembikar dan batu berharga seperti akik serta karnelian ke Alam Melayu.\nApakah barangan dari Alam Melayu yang turut mereka peroleh untuk perdagangan?",
+                options: [
+                    "A. Sutera, payung dan gendang sahaja",
+                    "B. Rempah, gaharu dan kapur barus",
+                    "C. Garam, gula dan mi beras sahaja",
+                    "D. Emas dan bijih besi dari pergunungan Phnom Dek sahaja"
+                ],
+                correctIndex: 1, // B
+                explanation: "Jawapan tepat: B. Rempah, gaharu dan kapur barus.[cite: 1] Pedagang India mendapatkan hasil alam bernilai tinggi ini dari pasar Alam Melayu."
+            },
+            {
+                id: 21,
+                section: "Bahagian B: Kegiatan Ekonomi",
+                question: "21. Pedagang Arab dan Parsi membawa tembikar, minyak wangi, barangan kaca dan manik untuk didagangkan di Alam Melayu.\nApakah barangan yang mereka beli untuk didagangkan semula ke Tanah Arab dan Rom?",
+                options: [
+                    "A. Rempah-ratus dan kayu wangi",
+                    "B. Pinggan dan mangkuk dari China sahaja",
+                    "C. Padi dari kawasan pedalaman sahaja",
+                    "D. Peralatan pertanian dan senjata sahaja"
+                ],
+                correctIndex: 0, // A
+                explanation: "Jawapan tepat: A. Rempah-ratus dan kayu wangi.[cite: 1] Komoditi tempatan ini sangat mendapat pasaran mewah di Timur Tengah dan Empayar Rom."
+            },
+            {
+                id: 22,
+                section: "Bahagian B: Kegiatan Ekonomi",
+                question: "22. Kegiatan perdagangan kerajaan Alam Melayu membantu membangunkan pelabuhan dan memajukan pembuatan kapal. Masyarakatnya juga mahir dalam ilmu pelayaran sehingga mampu belayar hingga ke Afrika.\nApakah kesimpulan yang paling tepat?",
+                options: [
+                    "A. Masyarakat Alam Melayu hanya menjalankan perdagangan di kawasan pedalaman.",
+                    "B. Perdagangan tidak mempunyai kaitan dengan perkembangan teknologi.",
+                    "C. Kemahiran perkapalan dan pelayaran menyokong perkembangan perdagangan jarak jauh.",
+                    "D. Semua kapal dagang digunakan untuk peperangan sahaja."
+                ],
+                correctIndex: 2, // C
+                explanation: "Jawapan tepat: C. Kemahiran perkapalan dan pelayaran menyokong perkembangan perdagangan jarak jauh[cite: 1] merentasi Lautan Hindi."
+            },
+
+            // Bahagian C: Hasil Hutan, Hasil Laut, Perlombongan dan Pembuatan (23 - 30)
+            {
+                id: 23,
+                section: "Bahagian C: Hasil Hutan, Laut, Perlombongan & Pembuatan",
+                question: "23. Pada peringkat awal, masyarakat kerajaan Alam Melayu mengutip hasil hutan dan laut untuk kegunaan sendiri. Apabila hasilnya melebihi keperluan, lebihan tersebut didagangkan.\nApakah kesan perkembangan kegiatan tersebut?",
+                options: [
+                    "A. Semua petempatan menjadi kawasan pertanian sahaja.",
+                    "B. Kegiatan perdagangan tidak lagi berkembang.",
+                    "C. Masyarakat berhenti mengutip hasil hutan dan laut.",
+                    "D. Petempatan berkembang menjadi kawasan perdagangan."
+                ],
+                correctIndex: 3, // D
+                explanation: "Jawapan tepat: D. Petempatan berkembang menjadi kawasan perdagangan.[cite: 1] Dagangan hasil bumi mempercepatkan pertumbuhan petempatan menjadi bandar pelabuhan."
+            },
+            {
+                id: 24,
+                section: "Bahagian C: Hasil Hutan, Laut, Perlombongan & Pembuatan",
+                question: "24. Masyarakat kerajaan Alam Melayu mengutip pelbagai hasil hutan untuk memenuhi permintaan pedagang.\nPasangan manakah yang tepat tentang kegunaan hasil hutan tersebut?",
+                options: [
+                    "A. Gaharu — bahan pewangi dan perubatan",
+                    "B. Rotan — bahan utama pembuatan sutera",
+                    "C. Sarang burung — bahan binaan pelabuhan",
+                    "D. Kapur barus — bahan utama pengairan sawah"
+                ],
+                correctIndex: 0, // A
+                explanation: "Jawapan tepat: A. Gaharu — bahan pewangi dan perubatan.[cite: 1] Gaharu amat bernilai tinggi sebagai haruman ritual dan persediaan ubat-ubatan."
+            },
+            {
+                id: 25,
+                section: "Bahagian C: Hasil Hutan, Laut, Perlombongan & Pembuatan",
+                question: "25. Gamat, mutiara dan rumpai laut merupakan antara hasil laut yang terdapat di Alam Melayu.\nKawasan perairan manakah yang dinyatakan dalam buku teks sebagai kawasan yang mempunyai hasil laut tersebut?",
+                options: [
+                    "A. Laut Mediterranean dan Laut Merah",
+                    "B. Laut China Timur dan Laut Jepun",
+                    "C. Selat Melaka dan Laut Sulu",
+                    "D. Lautan Atlantik dan Laut Caribbean"
+                ],
+                correctIndex: 2, // C
+                explanation: "Jawapan tepat: C. Selat Melaka dan Laut Sulu.[cite: 1] Perairan maritim ini terkenal kaya dengan sumber gamat, mutiara dan rumpai laut."
+            },
+            {
+                id: 26,
+                section: "Bahagian C: Hasil Hutan, Laut, Perlombongan & Pembuatan",
+                question: "26. Masyarakat kerajaan Alam Melayu menjalankan kegiatan perlombongan emas, perak dan bijih besi. Pada peringkat awal, kegiatan ini dilakukan secara kecil-kecilan dengan menggunakan kaedah mendulang.\nApakah yang dimaksudkan dengan kegiatan perlombongan berdasarkan maklumat tersebut?",
+                options: [
+                    "A. Menghasilkan barang harian daripada bahan mentah",
+                    "B. Mengutip hasil laut untuk kegunaan sendiri",
+                    "C. Menghasilkan garam daripada air laut",
+                    "D. Mendapatkan sumber mineral seperti emas, perak dan bijih besi daripada bumi"
+                ],
+                correctIndex: 3, // D
+                explanation: "Jawapan tepat: D. Mendapatkan sumber mineral seperti emas, perak dan bijih besi daripada bumi.[cite: 1]"
+            },
+            {
+                id: 27,
+                section: "Bahagian C: Hasil Hutan, Laut, Perlombongan & Pembuatan",
+                question: "27. Kerajaan Champa dan Angkor mempunyai kawasan perlombongan yang berbeza.\nPadanan manakah yang tepat?",
+                options: [
+                    "A. Emas — Angkor, pergunungan Phnom Dek",
+                    "B. Perak — Champa, Indrapura dan kawasan antara Amaravati dengan Vijaya",
+                    "C. Bijih besi — Champa, pergunungan Hue",
+                    "D. Emas — Srivijaya, kawasan antara Amaravati dengan Vijaya"
+                ],
+                correctIndex: 1, // B
+                explanation: "Jawapan tepat: B. Perak — Champa, Indrapura dan kawasan antara Amaravati dengan Vijaya.[cite: 1] (Lombong emas di Champa terletak di pergunungan Hue, manakala bijih besi di Angkor di pergunungan Phnom Dek)."
+            },
+            {
+                id: 28,
+                section: "Bahagian C: Hasil Hutan, Laut, Perlombongan & Pembuatan",
+                question: "28. Masyarakat kerajaan Majapahit menjalankan pelbagai kegiatan pembuatan untuk memenuhi keperluan penduduk.\nAntara berikut, yang manakah merupakan hasil pembuatan kerajaan Majapahit?",
+                options: [
+                    "A. Garam, gula, minyak, pembungkusan daging kerbau dan mi daripada beras",
+                    "B. Baray, daik dan terusan pengairan",
+                    "C. Kapur barus, gaharu dan sarang burung",
+                    "D. Sutera, tembikar dan batu akik yang dibawa dari India"
+                ],
+                correctIndex: 0, // A
+                explanation: "Jawapan tepat: A. Garam, gula, minyak, pembungkusan daging kerbau dan mi daripada beras.[cite: 1] Ini merupakan sektor pembuatan makanan domestik Majapahit."
+            },
+            {
+                id: 29,
+                section: "Bahagian C: Hasil Hutan, Laut, Perlombongan & Pembuatan",
+                question: "29. Pernyataan manakah yang tepat tentang kegiatan pembuatan kerajaan Alam Melayu?",
+                options: [
+                    "A. Champa menghasilkan barangan daripada besi dan emas sahaja.",
+                    "B. Majapahit hanya menghasilkan tembikar untuk kegunaan golongan diraja.",
+                    "C. Funan dan Angkor menghasilkan barangan daripada besi dan emas seperti barang perhiasan, manakala Champa mahir membuat tembikar dan cuka kelapa.",
+                    "D. Angkor menghasilkan garam, gula dan mi beras sebagai kegiatan pembuatan utamanya."
+                ],
+                correctIndex: 2, // C
+                explanation: "Jawapan tepat: C. Funan dan Angkor menghasilkan barangan daripada besi dan emas seperti barang perhiasan, manakala Champa mahir membuat tembikar dan cuka kelapa.[cite: 1]"
+            },
+            {
+                id: 30,
+                section: "Bahagian C: Hasil Hutan, Laut, Perlombongan & Pembuatan",
+                question: "30. Seorang pemimpin ingin meningkatkan kemakmuran ekonomi negaranya dengan mengambil iktibar daripada kerajaan Alam Melayu.\nAntara berikut, yang manakah merupakan langkah paling sesuai?",
+                options: [
+                    "A. Bergantung pada satu kegiatan ekonomi sahaja dan mengabaikan sumber alam yang lain.",
+                    "B. Menghentikan kegiatan perdagangan bagi mengurangkan hubungan dengan negara luar.",
+                    "C. Menggunakan semua sumber alam tanpa perancangan untuk mendapatkan keuntungan segera.",
+                    "D. Mengurus sumber alam secara bijak, meningkatkan kemudahan pengairan dan pelabuhan serta menggalakkan kegiatan pengeluaran."
+                ],
+                correctIndex: 3, // D
+                explanation: "Jawapan tepat: D. Mengurus sumber alam secara bijak, meningkatkan kemudahan pengairan dan pelabuhan serta menggalakkan kegiatan pengeluaran.[cite: 1] Pendekatan ini mencerminkan kebijaksanaan warisan ekonomi silam."
+            }
+        ];
+
+        let playerInfo = { name: "", class: "" };
+        let questionQueue = [];
+        let totalOriginalQuestions = 0;
+        let initialScore = 0;
+        let totalFirstAttempts = 0;
+        let wrongAttempts = 0;
+        let isBGMPlaying = false;
+        let canAnswer = true;
+
+        let boosterCounts = { c5050: 2, cHint: 2, cSkip: 1 };
+        let audioCtx = null;
+
+        function initAudio() {
+            if (!audioCtx) {
+                try {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                } catch(e) {}
+            }
+        }
+
+        let bgmInterval = null;
+        function playBGMNotes() {
+            if (!isBGMPlaying || !audioCtx) return;
+            const notes = [261.63, 293.66, 329.63, 392.00, 440.00, 523.25];
+            const note = notes[Math.floor(Math.random() * notes.length)];
+            try {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(note, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.01, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 1.2);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 1.2);
+            } catch (e) {}
+        }
+
+        function toggleBGM() {
+            initAudio();
+            isBGMPlaying = !isBGMPlaying;
+            const statusText = document.getElementById('bgmStatus');
+            const icon = document.getElementById('bgmIcon');
+
+            if (isBGMPlaying) {
+                if (audioCtx && audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+                if (statusText) statusText.innerText = "Muzik: ON";
+                if (icon) icon.className = "fa-solid fa-music text-amber-500 animate-bounce";
+                bgmInterval = setInterval(playBGMNotes, 550);
+            } else {
+                if (statusText) statusText.innerText = "Muzik: OFF";
+                if (icon) icon.className = "fa-solid fa-volume-xmark text-slate-400";
+                clearInterval(bgmInterval);
+            }
+        }
+
+        function playSFX(type) {
+            initAudio();
+            if (!audioCtx) return;
+
+            try {
+                if (type === 'correct') {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(523.25, audioCtx.currentTime);
+                    osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.08);
+                    osc.frequency.setValueAtTime(783.99, audioCtx.currentTime + 0.16);
+                    gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.35);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.35);
+                } else if (type === 'wrong') {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(220, audioCtx.currentTime);
+                    osc.frequency.setValueAtTime(175, audioCtx.currentTime + 0.12);
+                    gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.3);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.3);
+                } else if (type === 'booster') {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(440, audioCtx.currentTime);
+                    osc.frequency.setValueAtTime(880, audioCtx.currentTime + 0.1);
+                    gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.25);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.25);
+                } else if (type === 'complete') {
+                    [523.25, 659.25, 783.99, 1046.50].forEach((freq, i) => {
+                        const o = audioCtx.createOscillator();
+                        const g = audioCtx.createGain();
+                        o.connect(g);
+                        g.connect(audioCtx.destination);
+                        o.frequency.value = freq;
+                        g.gain.setValueAtTime(0.08, audioCtx.currentTime + i * 0.09);
+                        g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + i * 0.09 + 0.4);
+                        o.start(audioCtx.currentTime + i * 0.09);
+                        o.stop(audioCtx.currentTime + i * 0.09 + 0.4);
+                    });
+                }
+            } catch(e){}
+        }
+
+        function buildQuestionObj(rawQ, isFirstAttempt = true) {
+            return {
+                ...rawQ,
+                firstAttempt: isFirstAttempt
+            };
+        }
+
+        function startQuiz() {
+            const nameEl = document.getElementById('playerName');
+            const classEl = document.getElementById('playerClass');
+            
+            const nameInput = nameEl ? nameEl.value.trim() : "";
+            const classInput = classEl ? classEl.value.trim() : "";
+
+            if (!nameInput || !classInput) {
+                alert("Sila masukkan Nama dan Kelas anda sebelum memulakan latihan!");
+                return;
+            }
+
+            playerInfo.name = nameInput;
+            playerInfo.class = classInput;
+
+            setSafeText('displayPlayerInfo', `Pelajar: ${playerInfo.name} (${playerInfo.class})`);
+
+            initAudio();
+
+            boosterCounts = { c5050: 2, cHint: 2, cSkip: 1 };
+            updateBoosterUI();
+
+            questionQueue = rawQuestionsDatabase.map(q => buildQuestionObj(q, true));
+
+            totalOriginalQuestions = questionQueue.length;
+            initialScore = 0;
+            totalFirstAttempts = 0;
+            wrongAttempts = 0;
+
+            document.getElementById('startScreen')?.classList.add('hidden');
+            document.getElementById('resultScreen')?.classList.add('hidden');
+            document.getElementById('quizScreen')?.classList.remove('hidden');
+
+            setSafeText('liveScore', '0');
+
+            renderQuestion();
+        }
+
+        function updateBoosterUI() {
+            setSafeText('count5050', boosterCounts.c5050);
+            setSafeText('countHint', boosterCounts.cHint);
+            setSafeText('countSkip', boosterCounts.cSkip);
+
+            const btn5050 = document.getElementById('btn5050');
+            const btnHint = document.getElementById('btnHint');
+            const btnSkip = document.getElementById('btnSkip');
+
+            if (btn5050) btn5050.disabled = boosterCounts.c5050 <= 0 || !canAnswer;
+            if (btnHint) btnHint.disabled = boosterCounts.cHint <= 0 || !canAnswer;
+            if (btnSkip) btnSkip.disabled = boosterCounts.cSkip <= 0 || !canAnswer;
+        }
+
+        function useBooster5050() {
+            if (boosterCounts.c5050 <= 0 || !canAnswer) return;
+            
+            const currentQ = questionQueue[0];
+            const optionsContainer = document.getElementById('optionsContainer');
+            if (!optionsContainer) return;
+
+            const buttons = Array.from(optionsContainer.children);
+            let wrongIndices = [];
+
+            buttons.forEach((btn, idx) => {
+                if (idx !== currentQ.correctIndex && !btn.disabled) {
+                    wrongIndices.push(idx);
+                }
+            });
+
+            if (wrongIndices.length >= 2) {
+                const toRemove = wrongIndices.slice(0, 2);
+                toRemove.forEach(i => {
+                    buttons[i].disabled = true;
+                    buttons[i].classList.add('opacity-30', 'line-through');
+                });
+
+                boosterCounts.c5050--;
+                playSFX('booster');
+                updateBoosterUI();
+            }
+        }
+
+        function useBoosterHint() {
+            if (boosterCounts.cHint <= 0 || !canAnswer) return;
+
+            const currentQ = questionQueue[0];
+            setSafeText('hintText', currentQ.explanation);
+            
+            document.getElementById('hintBanner')?.classList.remove('hidden');
+
+            boosterCounts.cHint--;
+            playSFX('booster');
+            updateBoosterUI();
+        }
+
+        function useBoosterSkip() {
+            if (boosterCounts.cSkip <= 0 || !canAnswer) return;
+
+            boosterCounts.cSkip--;
+            playSFX('booster');
+
+            const skippedQ = questionQueue.shift();
+            questionQueue.push(skippedQ);
+
+            updateBoosterUI();
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            canAnswer = true;
+            updateBoosterUI();
+
+            const currentQ = questionQueue[0];
+
+            setSafeText('questionNum', currentQ.id);
+            setSafeText('sectionBadge', currentQ.section || "Bab 2: Sistem Pemerintahan & Ekonomi");
+            setSafeText('queueCountInfo', `Baki Soalan: ${questionQueue.length}`);
+
+            const progressPercent = Math.min(100, Math.round(((totalOriginalQuestions - questionQueue.length) / totalOriginalQuestions) * 100));
+            setSafeText('progressPercentText', `${progressPercent}%`);
+
+            const progressBarEl = document.getElementById('progressBar');
+            if (progressBarEl) progressBarEl.style.width = `${progressPercent}%`;
+
+            setSafeText('questionText', currentQ.question);
+
+            const optionsContainer = document.getElementById('optionsContainer');
+            if (optionsContainer) {
+                optionsContainer.innerHTML = '';
+
+                currentQ.options.forEach((opt, index) => {
+                    const btn = document.createElement('button');
+                    btn.className = "btn-friendly w-full text-left p-3.5 sm:p-4 rounded-2xl border-2 border-slate-200 bg-white hover:bg-blue-50 hover:border-blue-400 transition-all font-black text-slate-800 flex items-center justify-between group shadow-sm";
+                    btn.onclick = () => checkAnswer(index);
+                    
+                    btn.innerHTML = `
+                        <div class="flex items-center gap-3">
+                            <span class="text-xs sm:text-sm leading-snug font-bold">${opt}</span>
+                        </div>
+                        <i class="fa-regular fa-circle text-slate-300 group-hover:text-blue-500 shrink-0 ml-2 text-base transition-colors"></i>
+                    `;
+                    optionsContainer.appendChild(btn);
+                });
+            }
+
+            document.getElementById('hintBanner')?.classList.add('hidden');
+            document.getElementById('feedbackBanner')?.classList.add('hidden');
+            document.getElementById('nextBtn')?.classList.add('hidden');
+        }
+
+        function checkAnswer(selectedIndex) {
+            if (!canAnswer) return;
+            canAnswer = false;
+            updateBoosterUI();
+
+            const currentQ = questionQueue[0];
+            const optionsContainer = document.getElementById('optionsContainer');
+            const buttons = optionsContainer ? optionsContainer.children : [];
+            const feedbackBanner = document.getElementById('feedbackBanner');
+            const feedbackIcon = document.getElementById('feedbackIcon');
+
+            Array.from(buttons).forEach(btn => btn.disabled = true);
+
+            if (selectedIndex === currentQ.correctIndex) {
+                playSFX('correct');
+                if (buttons[selectedIndex]) {
+                    buttons[selectedIndex].className = "w-full text-left p-3.5 sm:p-4 rounded-2xl border-2 border-emerald-500 bg-emerald-50 font-black text-emerald-950 flex items-center justify-between shadow-sm";
+                    const icon = buttons[selectedIndex].querySelector('i');
+                    if (icon) icon.className = "fa-solid fa-circle-check text-emerald-600 text-lg shrink-0 ml-2";
+                }
+
+                if (feedbackBanner) feedbackBanner.className = "p-4 rounded-2xl mb-4 text-sm font-bold flex items-start gap-3 bg-emerald-100 text-emerald-950 border-2 border-emerald-300 shadow-sm";
+                if (feedbackIcon) feedbackIcon.className = "fa-solid fa-circle-check text-2xl text-emerald-600 mt-0.5 shrink-0";
+                
+                setSafeText('feedbackTitle', 'TEPAT SEKALI! 🎯');
+                setSafeText('feedbackText', currentQ.explanation);
+
+                if (currentQ.firstAttempt) {
+                    initialScore += 1;
+                    totalFirstAttempts++;
+                    setSafeText('liveScore', initialScore);
+                }
+
+                questionQueue.shift();
+
+            } else {
+                playSFX('wrong');
+                wrongAttempts++;
+
+                if (buttons[selectedIndex]) {
+                    buttons[selectedIndex].className = "w-full text-left p-3.5 sm:p-4 rounded-2xl border-2 border-rose-400 bg-rose-50 font-black text-rose-950 flex items-center justify-between shadow-sm";
+                    const icon = buttons[selectedIndex].querySelector('i');
+                    if (icon) icon.className = "fa-solid fa-circle-xmark text-rose-600 text-lg shrink-0 ml-2";
+                }
+
+                if (buttons[currentQ.correctIndex]) {
+                    buttons[currentQ.correctIndex].className = "w-full text-left p-3.5 sm:p-4 rounded-2xl border-2 border-emerald-400 bg-emerald-50 font-black text-emerald-950 flex items-center justify-between";
+                }
+
+                if (feedbackBanner) feedbackBanner.className = "p-4 rounded-2xl mb-4 text-sm font-bold flex items-start gap-3 bg-rose-100 text-rose-950 border-2 border-rose-300 shadow-sm";
+                if (feedbackIcon) feedbackIcon.className = "fa-solid fa-triangle-exclamation text-2xl text-rose-600 mt-0.5 shrink-0";
+                
+                setSafeText('feedbackTitle', 'JAWAPAN KURANG TEPAT 💡');
+                setSafeText('feedbackText', `${currentQ.explanation} Soalan ini akan diulang pada penghujung giliran supaya anda lebih faham.`);
+
+                const wrongRawQ = rawQuestionsDatabase.find(q => q.id === currentQ.id);
+                questionQueue.shift();
+                
+                if (wrongRawQ) {
+                    const reshuffledQ = buildQuestionObj(wrongRawQ, false);
+                    questionQueue.push(reshuffledQ);
+                }
+            }
+
+            feedbackBanner?.classList.remove('hidden');
+            document.getElementById('nextBtn')?.classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            if (questionQueue.length > 0) {
+                renderQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            playSFX('complete');
+
+            try {
+                confetti({
+                    particleCount: 150,
+                    spread: 90,
+                    origin: { y: 0.6 }
+                });
+            } catch(e){}
+
+            document.getElementById('quizScreen')?.classList.add('hidden');
+            document.getElementById('resultScreen')?.classList.remove('hidden');
+
+            const accuracy = Math.round((totalFirstAttempts / totalOriginalQuestions) * 100);
+
+            setSafeText('resPlayerName', playerInfo.name);
+            setSafeText('finalScore', `${initialScore} / 30`);
+            setSafeText('accuracyPercent', `${accuracy}%`);
+            setSafeText('wrongAttemptsCount', wrongAttempts);
+
+            saveScoreToLeaderboard(playerInfo.name, playerInfo.class, initialScore, accuracy);
+
+            const badgeEl = document.getElementById('performanceBadge');
+            let motivationMsg = "";
+
+            if (initialScore >= 25) {
+                if (badgeEl) badgeEl.className = "mb-4 inline-block px-5 py-2 rounded-2xl font-black text-sm uppercase tracking-wide border-2 bg-emerald-100 text-emerald-900 border-emerald-300";
+                setSafeText('performanceBadge', "Penguasaan Baik (25–30 Markah)");
+                motivationMsg = "🎉 TAHNIAH! Penguasaan anda amat cemerlang! Anda mempunyai ingatan fakta sistem pemerintahan dan kegiatan ekonomi yang sangat kukuh dalam Bab 2.";
+            } else if (initialScore >= 19) {
+                if (badgeEl) badgeEl.className = "mb-4 inline-block px-5 py-2 rounded-2xl font-black text-sm uppercase tracking-wide border-2 bg-blue-100 text-blue-900 border-blue-300";
+                setSafeText('performanceBadge', "Memuaskan (19–24 Markah)");
+                motivationMsg = "👍 SYABAS! Keputusan anda memuaskan. Ulang kaji semula subtopik pelabuhan dan barangan dagangan untuk memantapkan fakta.";
+            } else if (initialScore >= 13) {
+                if (badgeEl) badgeEl.className = "mb-4 inline-block px-5 py-2 rounded-2xl font-black text-sm uppercase tracking-wide border-2 bg-amber-100 text-amber-900 border-amber-300";
+                setSafeText('performanceBadge', "Perlu Pengukuhan (13–18 Markah)");
+                motivationMsg = "💪 USAHA LAGI! Anda memerlukan pengukuhan konsep dan fakta utama Bab 2. Buka semula nota dan cuba latihan ini sekali lagi!";
+            } else {
+                if (badgeEl) badgeEl.className = "mb-4 inline-block px-5 py-2 rounded-2xl font-black text-sm uppercase tracking-wide border-2 bg-rose-100 text-rose-900 border-rose-300";
+                setSafeText('performanceBadge', "Bimbingan Diperlukan (0–12 Markah)");
+                motivationMsg = "📚 JANGAN PUTUS ASA! Disyorkan untuk mengulang kaji Bab 2 secara berperingkat (Bahagian A hingga C) sebelum mencuba semula set ini.";
+            }
+
+            setSafeText('motivationMsg', motivationMsg);
+        }
+
+        function getLeaderboardData() {
+            try {
+                const data = localStorage.getItem('sejarah_bab2_uasa_leaderboard');
+                return data ? JSON.parse(data) : [];
+            } catch (e) {
+                return [];
+            }
+        }
+
+        function saveScoreToLeaderboard(name, pClass, score, accuracy) {
+            try {
+                let leaderboard = getLeaderboardData();
+                
+                leaderboard.push({
+                    name: name,
+                    class: pClass,
+                    score: score,
+                    accuracy: accuracy,
+                    date: new Date().toLocaleDateString('ms-MY')
+                });
+
+                leaderboard.sort((a, b) => b.score - a.score || b.accuracy - a.accuracy);
+                leaderboard = leaderboard.slice(0, 20);
+
+                localStorage.setItem('sejarah_bab2_uasa_leaderboard', JSON.stringify(leaderboard));
+            } catch (e) {}
+        }
+
+        function renderLeaderboardList() {
+            const listContainer = document.getElementById('leaderboardList');
+            if (!listContainer) return;
+
+            const leaderboard = getLeaderboardData();
+
+            if (leaderboard.length === 0) {
+                listContainer.innerHTML = `
+                    <div class="text-center py-8 text-slate-400 font-bold text-sm italic">
+                        Belum ada rekod. Jadi murid pertama yang tersenarai!
+                    </div>
+                `;
+                return;
+            }
+
+            listContainer.innerHTML = '';
+            leaderboard.forEach((item, index) => {
+                let badgeClass = "bg-slate-100 text-slate-600";
+                let iconHtml = `<span class="font-black text-xs">#${index + 1}</span>`;
+
+                if (index === 0) {
+                    badgeClass = "bg-amber-100 text-amber-800 border border-amber-300";
+                    iconHtml = `<i class="fa-solid fa-crown text-amber-500"></i>`;
+                } else if (index === 1) {
+                    badgeClass = "bg-slate-200 text-slate-700 border border-slate-300";
+                    iconHtml = `<i class="fa-solid fa-medal text-slate-400"></i>`;
+                } else if (index === 2) {
+                    badgeClass = "bg-amber-700/10 text-amber-900 border border-amber-600/30";
+                    iconHtml = `<i class="fa-solid fa-award text-amber-700"></i>`;
+                }
+
+                const itemEl = document.createElement('div');
+                itemEl.className = "flex items-center justify-between bg-slate-50 p-3.5 rounded-2xl border border-slate-200 text-sm shadow-sm";
+                itemEl.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-xl flex items-center justify-center ${badgeClass} shrink-0">
+                            ${iconHtml}
+                        </div>
+                        <div>
+                            <div class="font-black text-slate-800 leading-tight">${item.name}</div>
+                            <div class="text-xs font-bold text-slate-400 mt-0.5">${item.class} • ${item.date}</div>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <div class="font-display font-black text-blue-600 text-base">${item.score} / 30 m</div>
+                        <div class="text-[10px] font-black text-slate-400">${item.accuracy}% ketepatan</div>
+                    </div>
+                `;
+                listContainer.appendChild(itemEl);
+            });
+        }
+
+        function toggleLeaderboardModal(show) {
+            const modal = document.getElementById('leaderboardModal');
+            if (modal) {
+                if (show) {
+                    renderLeaderboardList();
+                    modal.classList.remove('hidden');
+                } else {
+                    modal.classList.add('hidden');
+                }
+            }
+        }
+
+        function clearLeaderboard() {
+            if (confirm("Adakah anda pasti mahu memadamkan rekod kedudukan?")) {
+                try {
+                    localStorage.removeItem('sejarah_bab2_uasa_leaderboard');
+                } catch(e){}
+                renderLeaderboardList();
+            }
+        }
+
+        function restartQuiz() {
+            document.getElementById('resultScreen')?.classList.add('hidden');
+            document.getElementById('startScreen')?.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
